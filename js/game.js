@@ -44,12 +44,13 @@ function buildBoard(size) {
 }
 
 function onCellClicked(elCell, i, j) {
+    //placeMines(gBoard, 2)
     var cell = gBoard[i][j]
 
-    if (!cell.isCovered) return;
+    if (!cell.isCovered) return
 
-    cell.isCovered = false;
-
+    cell.isCovered = false
+    elCell.classList.remove('covered')
     elCell.classList.add('uncovered')
 
     if (cell.isMine) {
@@ -65,6 +66,11 @@ function onCellClicked(elCell, i, j) {
 }
 
 function onCellMarked(elCell) {
+
+    document.addEventListener('contextmenu', function (event) {
+        event.preventDefault();
+    })
+
 
 }
 

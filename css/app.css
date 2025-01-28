@@ -8,13 +8,16 @@ body {
 table {
 	margin: 100px auto;
 	border: 1px solid rgb(255, 255, 255);
+	color: aliceblue;
 }
 
 .cell {
 	width: 40px;
 	height: 40px;
 	font-size: 1em;
+	color:  rgb(25, 39, 49);
 	border: 1px solid rgb(255, 255, 255);
+	border-radius: 0.5pc;
 
 }
 
@@ -26,5 +29,17 @@ h1 {
 	background-color: rgb(144, 159, 159);
 }
 
+td {
+	 background-color: rgb(111, 147, 162);
+}
+.uncovered{
 
+background-color: rgb(173, 193, 202);
+
+}
+
+.covered{
+
+	background-color: rgb(111, 147, 162);
+}
 
