@@ -5,7 +5,8 @@ function renderBoard(mat, selector) {
         strHTML += '<tr>'
         for (var j = 0; j < mat[0].length; j++) {
             const className = `cell cell-${i}-${j} covered`
-            strHTML += `<td class="${className}" onclick="onCellClicked(this, ${i}, ${j})"></td>`
+            strHTML += `<td class="${className}" onclick="onCellClicked(this, ${i}, ${j})" 
+                        oncontextmenu="onCellMarked(event, this, ${i}, ${j})"></td>`
         }
         strHTML += '</tr>'
     }
@@ -23,3 +24,4 @@ function getRandomInt(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+

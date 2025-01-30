@@ -1,5 +1,4 @@
 'use strict'
-
 var gBoard
 
 const gLevel = {
@@ -14,12 +13,12 @@ const gGame = {
     secsPassed: 0
 }
 
+var gIsFirstClick = true
+
 function onInit() {
     const size = gLevel.SIZE
     gGame.isOn = true
     gBoard = buildBoard(size)
-    placeMines(gBoard, 2)
-    calculateMinesAround(gBoard)
     renderBoard(gBoard, '.board-container')
     console.log(gBoard)
 }
@@ -40,11 +39,17 @@ function buildBoard(size) {
 
     }
     return board
-
 }
 
 function onCellClicked(elCell, i, j) {
-    //placeMines(gBoard, 2)
+    if (gIsFirstClick) {
+        gIsFirstClick = false
+        placeMines(gBoard, i, j)
+        calculateMinesAround(gBoard)
+        renderBoard(gBoard, '.board-container')
+        elCell = document.querySelector(`.cell-${i}-${j}`)
+    }
+
     var cell = gBoard[i][j]
 
     if (!cell.isCovered) return
@@ -55,30 +60,68 @@ function onCellClicked(elCell, i, j) {
 
     if (cell.isMine) {
         elCell.innerText = '#'
-        console.log('Game over')
-
+        console.log(' Game over');
     } else if (cell.minesAroundCount > 0) {
         elCell.innerText = cell.minesAroundCount
     } else {
-
         elCell.innerText = ''
+        expandUncover(gBoard, i, j)
     }
+
+    checkGameOver()
 }
 
-function onCellMarked(elCell) {
+function onCellMarked(event, elCell, i, j) {
+    event.preventDefault()
 
-    document.addEventListener('contextmenu', function (event) {
-        event.preventDefault();
-    })
+    var cell = gBoard[i][j]
 
-
+    if (cell.isCovered) {
+        cell.isMarked = !cell.isMarked
+        elCell.innerText = cell.isMarked ? '🚩' : ''
+    }
+    checkGameOver()
 }
 
 function checkGameOver() {
 
+    var totalMines = 0
+    var minesFlagged = 0
+    var coveredCells = 0
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j]
+
+            if (cell.isMine) totalMines++
+            if (cell.isMine && cell.isMarked) minesFlagged++
+            if (cell.isCovered) coveredCells++
+        }
+    }
+
+    if (minesFlagged === totalMines && coveredCells === totalMines) {
+        console.log('Victory!')
+        gGame.isOn = false
+    }
 }
 
-function expandUncover(board, elCell, i, j) {
+function expandUncover(board, i, j) {
 
+    for (var row = i - 1; row <= i + 1; row++) {
+        if (row < 0 || row >= board.length) continue
+
+        for (var col = j - 1; col <= j + 1; col++) {
+            if (col < 0 || col >= board[row].length) continue
+            if (row === i && col === j) continue
+
+            var neighborCell = document.querySelector(`.cell-${row}-${col}`)
+            if (!neighborCell) continue
+
+            if (board[row][col].isCovered) {
+                onCellClicked(neighborCell, row, col)
+            }
+        }
+    }
 }
+
 
