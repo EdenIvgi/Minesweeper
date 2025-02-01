@@ -1,5 +1,7 @@
 'use strict'
 var gBoard
+var gLives = 3
+var gIsFirstClick = true
 
 const gLevel = {
     SIZE: 4,
@@ -12,8 +14,6 @@ const gGame = {
     markedCount: 0,
     secsPassed: 0
 }
-
-var gIsFirstClick = true
 
 function onInit() {
     const size = gLevel.SIZE
@@ -41,7 +41,45 @@ function buildBoard(size) {
     return board
 }
 
+function setGameLevel(size, mines, elButton) {
+    gLevel.SIZE = size
+    gLevel.MINES = mines
+    var levelButtons = document.querySelectorAll(".level-btn")
+    levelButtons.forEach(button => button.classList.remove("selected-level"))
+
+    elButton.classList.add("selected-level")
+    resetGame()
+}
+
+
+function updateLivesDisplay() {
+    var elLives = document.getElementById('lives-count')
+    elLives.innerText = '❤️'.repeat(gLives)
+}
+
+function resetGame() {
+    gLives = 3
+    gIsFirstClick = true
+    gGame.isOn = true
+
+    gBoard = buildBoard(gLevel.SIZE)
+
+    renderBoard(gBoard, '.board-container')
+
+    updateLivesDisplay()
+    updateSmileyButton("😃")
+}
+
+function updateSmileyButton(emoji) {
+    var elSmiley = document.getElementById('smiley-btn')
+    if (elSmiley) {
+        elSmiley.innerText = emoji
+    }
+}
+
 function onCellClicked(elCell, i, j) {
+    if (!gGame.isOn) return
+
     if (gIsFirstClick) {
         gIsFirstClick = false
         placeMines(gBoard, i, j)
@@ -60,8 +98,17 @@ function onCellClicked(elCell, i, j) {
 
     if (cell.isMine) {
         elCell.innerText = '#'
-        console.log(' Game over');
-    } else if (cell.minesAroundCount > 0) {
+        gLives--
+        updateLivesDisplay()
+        console.log('You have, ' + gLives + ' left')
+        if (gLives === 0) {
+            console.log('Game Over!')
+            onGameOver()
+        }
+        return
+    }
+
+    if (cell.minesAroundCount > 0) {
         elCell.innerText = cell.minesAroundCount
     } else {
         elCell.innerText = ''
@@ -102,7 +149,14 @@ function checkGameOver() {
     if (minesFlagged === totalMines && coveredCells === totalMines) {
         console.log('Victory!')
         gGame.isOn = false
+        updateSmileyButton()
     }
+
+}
+
+function onGameOver() {
+    gGame.isOn = false
+    updateSmileyButton("🤯")
 }
 
 function expandUncover(board, i, j) {
@@ -115,8 +169,8 @@ function expandUncover(board, i, j) {
             if (row === i && col === j) continue
 
             var neighborCell = document.querySelector(`.cell-${row}-${col}`)
-            if (!neighborCell) continue
 
+            if (!neighborCell) continue
             if (board[row][col].isCovered) {
                 onCellClicked(neighborCell, row, col)
             }

@@ -11,9 +11,23 @@
 
 <body>
     <h1>Minesweeper</h1>
+    <div class="lives-container">
+        Lives: <span id="lives-count">❤️❤️❤️</span>
+    </div>
+
+    <button id="smiley-btn" onclick="resetGame()">😃</button>
+
     <div class="board-container">
 
     </div>
+
+    <div id="level-buttons" class="level-container"> Level:
+        <button class="level-btn" onclick="setGameLevel(4, 2, this)">Beginner</button>
+        <button class="level-btn" onclick="setGameLevel(8, 14, this)">Normal</button>
+        <button class="level-btn" onclick="setGameLevel(12, 32, this)">Expert</button>
+    </div>
+
+
 
     <script src="js/game.js"></script>
     <script src="js/mines.js"></script>

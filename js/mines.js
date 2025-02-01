@@ -1,13 +1,10 @@
 'use strict'
 
-
-
-
 function placeMines(board, i, j) {
     var mineCount = gLevel.MINES
     const rows = board.length
     const cols = board[0].length
-    var placedMines = 0;
+    var placedMines = 0
     while (placedMines < mineCount) {
         const randomRow = getRandomInt(0, rows - 1)
         const randomCol = getRandomInt(0, cols - 1)
@@ -20,7 +17,6 @@ function placeMines(board, i, j) {
         }
     }
 }
-
 
 function calculateMinesAround(board) {
     for (var i = 0; i < board.length; i++) {

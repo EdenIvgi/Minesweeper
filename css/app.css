@@ -12,12 +12,12 @@ table {
 }
 
 .cell {
-	width: 40px;
-	height: 40px;
+	width: 25px;
+	height: 25px;
 	font-size: 1em;
 	color:  rgb(25, 39, 49);
 	border: 1px solid rgb(255, 255, 255);
-	border-radius: 0.5pc;
+	border-radius: 0.1pc;
 
 }
 
@@ -42,4 +42,15 @@ background-color: rgb(173, 193, 202);
 
 	background-color: rgb(111, 147, 162);
 }
+
+.selected-level {
+    background-color: rgb(93, 93, 119);
+    color: white;
+    font-weight: bold;
+}
+/* 
+.level-btn {
+
+} */
+
 
