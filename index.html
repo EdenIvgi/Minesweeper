@@ -10,21 +10,29 @@
 </head>
 
 <body>
+
     <h1>Minesweeper</h1>
+    <div class="game-author">Eden Avgi</div>
     <div class="lives-container">
-        Lives: <span id="lives-count">❤️❤️❤️</span>
+        <span id="lives-count">❤️❤️❤️</span>
+        <button id="smiley-btn" onclick="resetGame()">😃</button>
     </div>
 
-    <button id="smiley-btn" onclick="resetGame()">😃</button>
-
+    <div class="timer-container">
+        ⏳ <span id="timer">0</span> sec
+    </div>
     <div class="board-container">
 
     </div>
 
-    <div id="level-buttons" class="level-container"> Level:
-        <button class="level-btn" onclick="setGameLevel(4, 2, this)">Beginner</button>
-        <button class="level-btn" onclick="setGameLevel(8, 14, this)">Normal</button>
-        <button class="level-btn" onclick="setGameLevel(12, 32, this)">Expert</button>
+
+    <div id="level-buttons" class="level-container">
+        <h2>Difficulty</h2>
+        <div class="level-buttons">
+            <button class="level-btn" onclick="setGameLevel(4, 2, this)">Beginner</button>
+            <button class="level-btn selected-level" onclick="setGameLevel(8, 14, this)">Normal</button>
+            <button class="level-btn" onclick="setGameLevel(12, 32, this)">Expert</button>
+        </div>
     </div>
 
 

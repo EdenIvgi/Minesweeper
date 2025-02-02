@@ -1,56 +1,159 @@
 body {
-    background-color: rgb(156, 189, 215);
-	text-align: center;
-	color: rgb(255, 255, 255);
-    font-family: Georgia, serif;
+    background-color: var(--background-color);
+    text-align: center;
+    color: var(--text-color);
+    font-family: myFirstFont;
+    caret-color: transparent;
+    margin: 0;
+    padding: 0;
 }
 
+@font-face {
+    font-family: myFirstFont;
+    src: url(../assets/Anton-Regular.ttf);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 100%;
+    margin-bottom: 20px;
+}
+
+.lives-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+    color: var(--text-color);
+    width: fit-content;
+    margin: 0 auto 10px auto;
+    flex-direction: row;
+    position: relative;
+}
+
+
+
+#smiley-btn {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.lives {
+    display: flex;
+    gap: 15px;
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+
 table {
-	margin: 100px auto;
-	border: 1px solid rgb(255, 255, 255);
-	color: aliceblue;
+    margin: 0 auto;
+    color: #F5F5F5;
+    position: relative;
 }
 
 .cell {
-	width: 25px;
-	height: 25px;
-	font-size: 1em;
-	color:  rgb(25, 39, 49);
-	border: 1px solid rgb(255, 255, 255);
-	border-radius: 0.1pc;
-
+    width: 25px;
+    height: 25px;
+    font-size: 1em;
+    color: var(--text-color);
+    border-radius: 2px;
+    background-color: var(--cell-covered-color);
+    text-align: center;
+    line-height: 25px;
 }
 
- .board-container3{
-	background-color: white;
-} 
-
-h1 {
-	background-color: rgb(144, 159, 159);
+.uncovered {
+    background-color: var(--cell-uncovered-color);
 }
 
-td {
-	 background-color: rgb(111, 147, 162);
+.level-container {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    background-color: var(--cell-covered-color);
+    padding: 20px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
-.uncovered{
 
-background-color: rgb(173, 193, 202);
-
+.level-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.covered{
 
-	background-color: rgb(111, 147, 162);
+.level-btn {
+    background-color: var(--cell-uncovered-color);
+    font-family: myFirstFont;
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.level-btn:hover {
+    background-color: #6da9b4;
 }
 
 .selected-level {
     background-color: rgb(93, 93, 119);
-    color: white;
+    color: #E7F6F2;
+}
+
+.timer-container {
+    font-size: 15px;
+    margin-top: 10px;
+    color: var(--text-color);
     font-weight: bold;
 }
-/* 
-.level-btn {
 
-} */
+:root {
+    --text-color: #4A5F64;
+    --background-color: #F7F7F7;
+    --cell-covered-color: #A5C9CA;
+    --cell-uncovered-color: #D8E7E3;
+}
+
+.game-author {
+    font-family: myFirstFont;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
 
 

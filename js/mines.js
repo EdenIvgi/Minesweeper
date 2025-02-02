@@ -5,6 +5,7 @@ function placeMines(board, i, j) {
     const rows = board.length
     const cols = board[0].length
     var placedMines = 0
+
     while (placedMines < mineCount) {
         const randomRow = getRandomInt(0, rows - 1)
         const randomCol = getRandomInt(0, cols - 1)
@@ -37,7 +38,6 @@ function setMinesNegsCount(board, row, col) {
 
             if (j < 0 || j >= board[0].length) continue
             if (i === row && j === col) continue
-
             if (board[i][j].isMine) minesCount++
         }
     }
