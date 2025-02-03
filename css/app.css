@@ -23,7 +23,7 @@ body {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 60px;
     font-weight: 400;
     line-height: 100%;
     margin-bottom: 20px;
@@ -138,7 +138,6 @@ table {
     font-size: 15px;
     margin-top: 10px;
     color: var(--text-color);
-    font-weight: bold;
 }
 
 :root {
@@ -151,9 +150,8 @@ table {
 .game-author {
     font-family: myFirstFont;
     font-size: 20px;
-    font-weight: bold;
     text-align: center;
-    margin-bottom: 10px;
+   
 }
 
 

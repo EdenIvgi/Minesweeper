@@ -103,7 +103,7 @@ function onCellClicked(elCell, i, j) {
     elCell.classList.add('uncovered')
 
     if (cell.isMine) {
-        elCell.innerText = '#'
+        elCell.innerText = '💥'
         gLives--
         updateLivesDisplay()
         console.log('You have, ' + gLives + ' left')
