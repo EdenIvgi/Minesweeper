@@ -67,6 +67,7 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-bottom: 80px;
+   
 }
 
 
@@ -74,6 +75,7 @@ table {
     margin: 0 auto;
     color: #F5F5F5;
     position: relative;
+    
 }
 
 .cell {
@@ -97,7 +99,6 @@ table {
     width: 100%;
     background-color: var(--cell-covered-color);
     padding: 20px 10px;
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;

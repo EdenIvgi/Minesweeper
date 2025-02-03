@@ -1,4 +1,5 @@
 'use strict'
+onInit()
 function renderBoard(mat, selector) {
     var strHTML = '<table><tbody>'
     for (var i = 0; i < mat.length; i++) {
@@ -16,15 +17,29 @@ function renderBoard(mat, selector) {
     elContainer.innerHTML = strHTML
 }
 
-onInit()
-
-
 function getRandomInt(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+function startTimer() {
+    gStartTime = Date.now()
+    gTimerInterval = setInterval(updateTimer, 100)
+}
 
+function updateTimer() {
+    var elTimer = document.getElementById("timer")
+    if (!elTimer) return
 
+    var elapsedTime = (Date.now() - gStartTime) / 1000
+    gGame.secsPassed = elapsedTime
+    elTimer.innerText = elapsedTime.toFixed(2)
+}
+
+function stopTimer() {
+    clearInterval(gTimerInterval)
+    gTimerInterval = null
+    gGame.secsPassed = 0
+}
 
