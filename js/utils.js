@@ -1,5 +1,4 @@
 'use strict'
-onInit()
 function renderBoard(mat, selector) {
     var strHTML = '<table><tbody>'
     for (var i = 0; i < mat.length; i++) {

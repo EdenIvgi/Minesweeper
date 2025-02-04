@@ -1,3 +1,11 @@
+:root {
+    --text-color: #4A5F64;
+    --background-color: #F7F7F7;
+    --cell-covered-color: #A5C9CA;
+    --cell-uncovered-color: #D8E7E3;
+
+}
+
 body {
     background-color: var(--background-color);
     text-align: center;
@@ -33,19 +41,16 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-size: 20px;
+    font-size: 15px;
     color: var(--text-color);
     width: fit-content;
-    margin: 0 auto 10px auto;
+    margin: 5px auto;
     flex-direction: row;
     position: relative;
 }
 
-
-
-#smiley-btn {
-    font-size: 20px;
+.smiley-btn {
+    font-size: 15px;
     border: none;
     background: none;
     cursor: pointer;
@@ -54,8 +59,6 @@ h1 {
     align-items: center;
     justify-content: center;
 }
-
-
 
 .lives {
     display: flex;
@@ -66,10 +69,9 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 80px;
+    
    
 }
-
 
 table {
     margin: 0 auto;
@@ -79,14 +81,14 @@ table {
 }
 
 .cell {
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 22px;
     font-size: 1em;
     color: var(--text-color);
     border-radius: 2px;
     background-color: var(--cell-covered-color);
     text-align: center;
-    line-height: 25px;
+    line-height: 22px;
 }
 
 .uncovered {
@@ -95,31 +97,32 @@ table {
 
 .level-container {
     position: fixed;
-    bottom: 20px;
+    bottom: 0;
     width: 100%;
     background-color: var(--cell-covered-color);
-    padding: 20px 10px;
+    padding: 5px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    min-height: 50px;
 }
 
-.level-buttons {
+.footer {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+    
 }
-
 
 .level-btn {
     background-color: var(--cell-uncovered-color);
     font-family: myFirstFont;
     color: var(--text-color);
     border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 8px 16px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -130,6 +133,19 @@ table {
     background-color: #6da9b4;
 }
 
+.level-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--cell-covered-color);
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+
 .selected-level {
     background-color: rgb(93, 93, 119);
     color: #E7F6F2;
@@ -137,22 +153,33 @@ table {
 
 .timer-container {
     font-size: 15px;
-    margin-top: 10px;
     color: var(--text-color);
-}
-
-:root {
-    --text-color: #4A5F64;
-    --background-color: #F7F7F7;
-    --cell-covered-color: #A5C9CA;
-    --cell-uncovered-color: #D8E7E3;
 }
 
 .game-author {
     font-family: myFirstFont;
-    font-size: 20px;
+    font-size: 12px;
     text-align: center;
    
 }
+.safe-click {
+    background-color: rgb(57, 100, 109);
+}
 
+.header-btn {
+    background-color: var(--cell-uncovered-color);
+    font-family: myFirstFont;
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-btn:hover {
+    background-color: #6da9b4;
+}
 

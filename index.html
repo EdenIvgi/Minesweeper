@@ -5,30 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Minesweeper</title>
+    <title>Minesweeper - Eden Avgi </title>
     <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-
     <h1>Minesweeper</h1>
-    <div class="game-author">Eden Avgi</div>
-    <div class="lives-container">
-        <span id="lives-count">❤️❤️❤️</span>
-        <button id="smiley-btn" onclick="resetGame()">😃</button>
+    <div class="header">
+        <button id="safe-click-btn" class="header-btn " onclick="onSafeClick()">Safe (3)</button>
+        <button id="hint-btn" class="header-btn" onclick="activateHint()">Hint (3)</button>
     </div>
 
-    <div class="timer-container">
-        ⏳ <span id="timer">0</span> sec
+    <div class="lives-container">
+        <span id="lives-count" class="lives-count">❤️❤️❤️</span>
+        <button id="smiley-btn" class="smiley-btn" onclick="onInit()">😃</button>
     </div>
+
+
     <div class="board-container">
 
     </div>
+    <div class="timer-container">
+        ⏳ <span id="timer">0</span> sec
+    </div>
 
 
-    <div id="level-buttons" class="level-container">
+
+    <div class="level-container">
+        <div class="game-author"> By Eden Avgi</div>
         <h2>Difficulty</h2>
-        <div class="level-buttons">
+        <div class="footer">
             <button class="level-btn" onclick="setGameLevel(4, 2, this)">Beginner</button>
             <button class="level-btn selected-level" onclick="setGameLevel(8, 14, this)">Normal</button>
             <button class="level-btn" onclick="setGameLevel(12, 32, this)">Expert</button>
@@ -37,8 +43,8 @@
 
 
 
-    <script src="js/game.js"></script>
-    <script src="js/mines.js"></script>
     <script src="js/utils.js"></script>
+    <script src="js/mines.js"></script>
+    <script src="js/game.js"></script>
 
 </body>
