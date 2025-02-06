@@ -42,3 +42,23 @@ function stopTimer() {
     gGame.secsPassed = 0
 }
 
+function getElapsedTime() {
+    return ((Date.now() - gStartTime) / 1000).toFixed(2)
+}
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleSwitch = document.getElementById("dark-mode-toggle")
+    const body = document.body
+
+    const isDarkMode = localStorage.getItem("darkMode") === "enabled"
+    body.classList.toggle("dark-mode", isDarkMode)
+    toggleSwitch.checked = isDarkMode
+
+    toggleSwitch.addEventListener("change", () => {
+        body.classList.toggle("dark-mode", toggleSwitch.checked)
+        localStorage.setItem("darkMode", toggleSwitch.checked ? "enabled" : "disabled")
+    })
+})
+
+
+
+

@@ -153,50 +153,6 @@ function expandUncover(board, i, j) {
     }
 }
 
-function checkVictory() {
-    var uncoveredCells = 0
-    var totalCells = gLevel.SIZE ** 2
-
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard[i].length; j++) {
-            var cell = gBoard[i][j]
-            if (!cell.isMine && !cell.isCovered) {
-                uncoveredCells++
-            }
-        }
-    }
-
-    if (totalCells - uncoveredCells === gLevel.MINES) {
-        gGame.isOn = false
-        gGame.secsPassed = getElapsedTime()
-        stopTimer()
-        updateSmileyButton('😎')
-        console.log("Game Won!")
-    }
-}
-
-function onGameOver() {
-    gGame.isOn = false
-    gGame.secsPassed = getElapsedTime()
-    stopTimer()
-    updateSmileyButton("🫨")
-
-    for (var i = 0; i < gBoard.length; i++) {
-        for (var j = 0; j < gBoard[i].length; j++) {
-            var cell = gBoard[i][j]
-            if (cell.isMine) {
-                cell.isCovered = false
-                var elCell = document.querySelector(`.cell-${i}-${j}`)
-                if (elCell) {
-                    elCell.innerText = '💥'
-                    elCell.classList.remove('covered')
-                    elCell.classList.add('uncovered')
-                }
-            }
-        }
-    }
-}
-
 function getElapsedTime() {
     return ((Date.now() - gStartTime) / 1000).toFixed(2)
 }
@@ -247,6 +203,7 @@ function activateHint() {
 }
 
 function getHint(board, i, j) {
+    if (gIsFirstClick) return
     if (gHints === 0) return
 
     var revealedCells = []
@@ -326,6 +283,60 @@ function updateHintButton() {
         elHintBtn.innerText = `Hint (${gHints})`
     }
 }
+
+function checkVictory() {
+    var uncoveredCells = 0
+    var totalCells = gLevel.SIZE ** 2
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j]
+            if (!cell.isMine && !cell.isCovered) {
+                uncoveredCells++
+            }
+        }
+    }
+
+    if (totalCells - uncoveredCells === gLevel.MINES) {
+        gGame.isOn = false
+        gGame.secsPassed = getElapsedTime()
+        stopTimer()
+        updateSmileyButton('😎')
+        console.log("Game Won!")
+    }
+}
+
+function onGameOver() {
+    gGame.isOn = false
+    gGame.secsPassed = getElapsedTime()
+    stopTimer()
+    updateSmileyButton("🫨")
+
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[i].length; j++) {
+            var cell = gBoard[i][j]
+            if (cell.isMine) {
+                cell.isCovered = false
+                var elCell = document.querySelector(`.cell-${i}-${j}`)
+                if (elCell) {
+                    elCell.innerText = '💥'
+                    elCell.classList.remove('covered')
+                    elCell.classList.add('uncovered')
+                }
+            }
+        }
+    }
+}
+
+
+// function undoMove() {
+//     if (gBoardHistory.length === 0) return
+
+//     gBoard = gBoardHistory.pop()
+
+//     renderBoard(gBoard, '.board-container')
+
+// }
 
 
 

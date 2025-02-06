@@ -7,13 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Minesweeper - Eden Avgi </title>
     <link rel="stylesheet" href="css/app.css">
-</head>
+    <link rel="stylesheet" href="css/darkmode.css" </head>
 
 <body>
+    <div class="dark-mode-toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+        <span id="dark-mode-label">Light Mode</span>
+    </div>
+
     <h1>Minesweeper</h1>
+
     <div class="header">
         <button id="safe-click-btn" class="header-btn " onclick="onSafeClick()">Safe (3)</button>
         <button id="hint-btn" class="header-btn" onclick="activateHint()">Hint (3)</button>
+        <!-- <button class="header-btn" onclick="undoMove()">Undo</button> -->
     </div>
 
     <div class="lives-container">
@@ -21,15 +31,11 @@
         <button id="smiley-btn" class="smiley-btn" onclick="onInit()">😃</button>
     </div>
 
+    <div class="board-container"> </div>
 
-    <div class="board-container">
-
-    </div>
     <div class="timer-container">
         ⏳ <span id="timer">0</span> sec
     </div>
-
-
 
     <div class="level-container">
         <div class="game-author"> By Eden Avgi</div>
@@ -40,8 +46,6 @@
             <button class="level-btn" onclick="setGameLevel(12, 32, this)">Expert</button>
         </div>
     </div>
-
-
 
     <script src="js/utils.js"></script>
     <script src="js/mines.js"></script>
