@@ -45,19 +45,25 @@ function stopTimer() {
 function getElapsedTime() {
     return ((Date.now() - gStartTime) / 1000).toFixed(2)
 }
+
 document.addEventListener("DOMContentLoaded", () => {
     const toggleSwitch = document.getElementById("dark-mode-toggle")
+    const modeLabel = document.getElementById("dark-mode-label")
     const body = document.body
 
     const isDarkMode = localStorage.getItem("darkMode") === "enabled"
     body.classList.toggle("dark-mode", isDarkMode)
     toggleSwitch.checked = isDarkMode
+    modeLabel.innerText = isDarkMode ? "Dark Mode" : "Light Mode";
 
     toggleSwitch.addEventListener("change", () => {
-        body.classList.toggle("dark-mode", toggleSwitch.checked)
-        localStorage.setItem("darkMode", toggleSwitch.checked ? "enabled" : "disabled")
+        const isChecked = toggleSwitch.checked
+        body.classList.toggle("dark-mode", isChecked)
+        localStorage.setItem("darkMode", isChecked ? "enabled" : "disabled")
+        modeLabel.innerText = isChecked ? "Dark Mode" : "Light Mode"
     })
 })
+
 
 
 
